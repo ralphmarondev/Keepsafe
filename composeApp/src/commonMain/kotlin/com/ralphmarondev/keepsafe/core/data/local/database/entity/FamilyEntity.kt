@@ -12,7 +12,8 @@ import kotlinx.datetime.Instant
 data class FamilyEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val name: String = "",
+    val familyId: String = "",
+    val familyName: String = "",
     val createdAt: Instant = Clock.System.now(),
     val updatedAt: Instant = Clock.System.now(),
     val isDeleted: Boolean = false

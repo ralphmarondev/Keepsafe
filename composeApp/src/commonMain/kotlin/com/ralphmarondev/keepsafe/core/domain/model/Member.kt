@@ -2,7 +2,6 @@ package com.ralphmarondev.keepsafe.core.domain.model
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDate
 
 enum class Gender {
     Male, Female
@@ -35,9 +34,10 @@ fun allowedPermissions(member: Member): List<Permission> {
 
 data class Member(
     val id: Long = 0,
+    val localFamId: Long = 0, // from local database
+    val familyId: String = "", // from firebase
     val email: String = "",
     val password: String = "",
-    val familyId: Long = 0,
     val firstName: String? = null,
     val lastName: String? = null,
     val middleName: String? = null,
@@ -45,7 +45,7 @@ data class Member(
     val gender: Gender? = null,
     val role: FamilyRole? = null,
     val childOrder: Int? = null,
-    val birthday: LocalDate? = null,
+    val birthday: String? = null,
     val isAdmin: Boolean = false,
     val createdAt: Instant = Clock.System.now(),
     val updatedAt: Instant = Clock.System.now(),

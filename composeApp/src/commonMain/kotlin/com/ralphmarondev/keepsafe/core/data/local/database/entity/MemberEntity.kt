@@ -15,9 +15,10 @@ import kotlinx.datetime.LocalDate
 data class MemberEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
+    val localFamilyId: Long = 0,
+    val familyId: String = "",
     val email: String = "",
     val password: String = "",
-    val familyId: Long = 0,
     val firstName: String? = null,
     val lastName: String? = null,
     val middleName: String? = null,

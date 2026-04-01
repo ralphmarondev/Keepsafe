@@ -10,6 +10,6 @@ interface MemberDao {
     @Insert
     suspend fun insert(member: MemberEntity): Long
 
-    @Query("SELECT * FROM members WHERE familyId = :familyId AND isDeleted = 0")
+    @Query("SELECT * FROM members WHERE localFamilyId = :familyId AND isDeleted = 0")
     suspend fun getMembers(familyId: Long): List<MemberEntity>
 }
