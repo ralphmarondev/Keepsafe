@@ -38,6 +38,7 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.material.icons.extended)
             implementation(libs.bundles.koin)
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)

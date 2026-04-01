@@ -11,6 +11,7 @@ kotlinxDatetime = "0.6.0"
 material3 = "1.10.0-alpha05"
 koin = "4.1.1"
 koinComposeMultiplatform = "4.1.1"
+materialIconsExtended = "1.7.3"
 navigationCompose = "2.9.1"
 serialization = "1.9.0"
 datastore = "1.2.0"
@@ -40,6 +41,7 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComposeMultiplatform" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinComposeMultiplatform" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
