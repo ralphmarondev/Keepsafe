@@ -1,7 +1,7 @@
 package com.ralphmarondev.keepsafe.features.auth.presentation.login
 
 data class LoginState(
-    val familyId: Long = 0,
+    val familyId: String = "",
     val email: String = "",
     val password: String = "",
     val isLoggedIn: Boolean = false,

@@ -26,7 +26,7 @@ class LoginViewModel(
         }
     }
 
-    private fun familyIdChange(id: Long) {
+    private fun familyIdChange(id: String) {
         _state.update { it.copy(familyId = id) }
     }
 
@@ -52,12 +52,12 @@ class LoginViewModel(
                 }
                 val email = _state.value.email.trim()
                 val password = _state.value.password.trim()
-                val familyId = _state.value.familyId
+                val familyId = _state.value.familyId.trim()
 
                 val result = repository.login(
                     email = email,
                     password = password,
-                    familyId = familyId
+                    familyId = familyId.toLong()
                 )
 
                 when (result) {

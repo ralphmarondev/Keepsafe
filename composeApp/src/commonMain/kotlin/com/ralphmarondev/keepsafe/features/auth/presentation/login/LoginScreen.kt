@@ -118,8 +118,8 @@ private fun LoginScreen(
                         Spacer(modifier = Modifier.height(16.dp))
 
                         NormalTextField(
-                            value = state.familyId.toString(),
-                            onValueChange = { action(LoginAction.FamilyIdChange(it.toLong())) },
+                            value = state.familyId,
+                            onValueChange = { action(LoginAction.FamilyIdChange(it)) },
                             modifier = Modifier
                                 .fillMaxWidth(),
                             keyboardOptions = KeyboardOptions(
