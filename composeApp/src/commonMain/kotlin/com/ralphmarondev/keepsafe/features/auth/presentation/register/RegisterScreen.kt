@@ -1,7 +1,9 @@
 package com.ralphmarondev.keepsafe.features.auth.presentation.register
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +15,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountTree
+import androidx.compose.material.icons.outlined.Male
+import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -37,6 +41,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.ralphmarondev.keepsafe.core.domain.model.FamilyRole
 import com.ralphmarondev.keepsafe.core.domain.model.Gender
+import com.ralphmarondev.keepsafe.core.presentation.components.DropDownSelector
 import com.ralphmarondev.keepsafe.core.presentation.components.NormalTextField
 import com.ralphmarondev.keepsafe.core.presentation.components.PrimaryButton
 import com.ralphmarondev.keepsafe.core.presentation.components.SecondaryButton
@@ -167,7 +172,16 @@ private fun RegisterScreen(
 
                             Screen.Summary -> {
                                 Summary(
-                                    register = {},
+                                    familyId = state.familyId,
+                                    familyName = state.familyName,
+                                    firstName = state.firstName,
+                                    lastName = state.lastName,
+                                    middleName = state.middleName,
+                                    maidenName = state.maidenName,
+                                    gender = state.gender.name,
+                                    role = state.role.name,
+                                    email = state.email,
+                                    register = { action(RegisterAction.Register) },
                                     prev = { action(RegisterAction.ScreenChange(Screen.OptionalInformation)) }
                                 )
                             }
@@ -354,7 +368,6 @@ private fun PersonalInformation(
         placeHolderText = "(Optional)"
     )
 
-
     PrimaryButton(
         onClick = { next() },
         modifier = Modifier
@@ -415,42 +428,25 @@ private fun OptionalInformation(
         placeHolderText = "YYYY/MM/DD"
     )
 
-    NormalTextField(
-        value = "",
-        onValueChange = { },
-        modifier = Modifier
-            .fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Next
-        ),
-        keyboardActions = KeyboardActions(
-            onNext = {
-                focusManager.moveFocus(FocusDirection.Next)
-            }
-        ),
-        leadingIconImageVector = Icons.Outlined.AccountTree,
-        labelText = "Role",
-        placeHolderText = ""
+    DropDownSelector(
+        label = "Role",
+        options = FamilyRole.entries.toList(),
+        selectedOption = role,
+        onOptionSelected = roleChange,
+        leadingIcon = Icons.Outlined.Security,
+        modifier = Modifier.padding(bottom = 8.dp)
     )
 
-    NormalTextField(
-        value = "",
-        onValueChange = { },
-        modifier = Modifier
-            .fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Next
-        ),
-        keyboardActions = KeyboardActions(
-            onNext = {
-                focusManager.moveFocus(FocusDirection.Next)
-            }
-        ),
-        leadingIconImageVector = Icons.Outlined.AccountTree,
-        labelText = "Gender",
-        placeHolderText = ""
+    DropDownSelector(
+        label = "Gender",
+        options = Gender.entries.toList(),
+        selectedOption = gender,
+        onOptionSelected = genderChange,
+        leadingIcon = Icons.Outlined.Male,
+        modifier = Modifier.padding(vertical = 8.dp)
     )
 
+    Spacer(modifier = Modifier.height(8.dp))
     PrimaryButton(
         onClick = { next() },
         modifier = Modifier
@@ -546,11 +542,18 @@ private fun AccountInformation(
 
 @Composable
 private fun Summary(
+    familyId: String,
+    familyName: String,
+    firstName: String,
+    lastName: String,
+    middleName: String,
+    maidenName: String,
+    gender: String,
+    role: String,
+    email: String,
     register: () -> Unit,
     prev: () -> Unit
 ) {
-    val focusManager = LocalFocusManager.current
-
     Text(
         text = "Review Your Information",
         style = MaterialTheme.typography.titleLarge,
@@ -563,57 +566,45 @@ private fun Summary(
     )
     Spacer(modifier = Modifier.height(16.dp))
 
-    Column(modifier = Modifier.padding(vertical = 4.dp)) {
-        Text(
-            text = "Family ID:",
-            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
-            color = MaterialTheme.colorScheme.secondary,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = "1234",
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal),
-            color = MaterialTheme.colorScheme.primary,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-    }
-    Column(modifier = Modifier.padding(vertical = 4.dp)) {
-        Text(
-            text = "Family Name:",
-            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
-            color = MaterialTheme.colorScheme.secondary,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = "ABCD",
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal),
-            color = MaterialTheme.colorScheme.primary,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-    }
-    Column(modifier = Modifier.padding(vertical = 4.dp)) {
-        Text(
-            text = "Admin Email:",
-            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
-            color = MaterialTheme.colorScheme.secondary,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = "you@example.com",
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal),
-            color = MaterialTheme.colorScheme.primary,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-    }
+    SummaryComponent(
+        label = "Family ID",
+        value = familyId
+    )
+    SummaryComponent(
+        label = "Family Name",
+        value = familyName
+    )
+    SummaryComponent(
+        label = "First Name",
+        value = firstName
+    )
+    SummaryComponent(
+        label = "Last Name",
+        value = lastName
+    )
+    SummaryComponent(
+        label = "Middle Name",
+        value = middleName
+    )
+    SummaryComponent(
+        label = "Maiden Name",
+        value = maidenName
+    )
+    SummaryComponent(
+        label = "Role",
+        value = role
+    )
+    SummaryComponent(
+        label = "Gender",
+        value = gender
+    )
+    SummaryComponent(
+        label = "Email",
+        value = email
+    )
 
     PrimaryButton(
-        onClick = { },
+        onClick = { register() },
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
@@ -627,4 +618,33 @@ private fun Summary(
             .padding(vertical = 8.dp),
         defaultText = "Previous"
     )
+}
+
+@Composable
+private fun SummaryComponent(
+    label: String,
+    value: String
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
+            color = MaterialTheme.colorScheme.secondary,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+        Text(
+            text = value,
+            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal),
+            color = MaterialTheme.colorScheme.primary,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
 }
