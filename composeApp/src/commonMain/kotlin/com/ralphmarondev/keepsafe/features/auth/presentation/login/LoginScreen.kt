@@ -75,6 +75,14 @@ private fun LoginScreen(
     val focusManager = LocalFocusManager.current
     val hostState = remember { SnackbarHostState() }
 
+    LaunchedEffect(state.showMessage) {
+        if (state.showMessage) {
+            state.message?.let {
+                hostState.showSnackbar(message = it)
+            }
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -178,7 +186,7 @@ private fun LoginScreen(
                         )
 
                         SecondaryButton(
-                            onClick = { action(LoginAction.Login) },
+                            onClick = { action(LoginAction.Register) },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
