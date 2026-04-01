@@ -37,6 +37,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization)
+            implementation(libs.kotlinx.datetime)
             implementation(libs.bundles.koin)
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
