@@ -57,7 +57,7 @@ class LoginViewModel(
                 val result = repository.login(
                     email = email,
                     password = password,
-                    familyId = familyId.toLong()
+                    familyId = familyId
                 )
 
                 when (result) {

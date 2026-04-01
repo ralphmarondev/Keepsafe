@@ -34,7 +34,7 @@ fun allowedPermissions(member: Member): List<Permission> {
 
 data class Member(
     val id: Long = 0,
-    val localFamId: Long = 0, // from local database
+    val localFamilyId: Long = 0, // from local database
     val familyId: String = "", // from firebase
     val email: String = "",
     val password: String = "",

@@ -2,6 +2,7 @@ package com.ralphmarondev.keepsafe.features.auth.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ralphmarondev.keepsafe.core.domain.model.Family
 import com.ralphmarondev.keepsafe.core.domain.model.FamilyRole
 import com.ralphmarondev.keepsafe.core.domain.model.Gender
 import com.ralphmarondev.keepsafe.core.domain.model.Member
@@ -103,10 +104,29 @@ class RegisterViewModel(
                     )
                 }
 
-                val member = Member(
-
+                val current = state.value
+                val family = Family(
+                    familyId = current.familyId.trim(),
+                    familyName = current.familyName.trim()
                 )
-                when (val result = repository.register(member)) {
+                val member = Member(
+                    familyId = current.familyId.trim(),
+                    email = current.email,
+                    password = current.password,
+                    firstName = current.firstName,
+                    lastName = current.lastName,
+                    middleName = current.middleName,
+                    maidenName = current.maidenName,
+                    role = current.role,
+                    gender = current.gender,
+                    birthday = current.birthday,
+                    isAdmin = true
+                )
+                val result = repository.register(
+                    family = family,
+                    member = member
+                )
+                when (result) {
                     is Result.Error -> {
                         _state.update {
                             it.copy(
