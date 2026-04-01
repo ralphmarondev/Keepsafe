@@ -11,5 +11,6 @@ val coreModule = module {
             .setDriver(BundledSQLiteDriver())
             .build()
     }
-    single { get<AppDatabase>().userDao }
+    single { get<AppDatabase>().familyDao }
+    single { get<AppDatabase>().memberDao }
 }
