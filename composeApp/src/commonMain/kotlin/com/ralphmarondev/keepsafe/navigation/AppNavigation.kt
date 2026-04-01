@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ralphmarondev.keepsafe.features.auth.presentation.login.LoginScreenRoot
+import com.ralphmarondev.keepsafe.features.auth.presentation.register.RegisterScreenRoot
 import com.ralphmarondev.keepsafe.features.family.presentation.family_list.FamilyListScreenRoot
 
 @Composable
@@ -34,7 +35,20 @@ fun AppNavigation(
             )
         }
         composable<Routes.Register> {
-
+            RegisterScreenRoot(
+                onRegistrationSuccessful = {
+                    navController.navigate(Routes.FamilyList) {
+                        popUpTo(0) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                },
+                onLoginClick = {
+                    navController.navigate(Routes.Login) {
+                        popUpTo(0) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                }
+            )
         }
         composable<Routes.FamilyList> {
             FamilyListScreenRoot()
