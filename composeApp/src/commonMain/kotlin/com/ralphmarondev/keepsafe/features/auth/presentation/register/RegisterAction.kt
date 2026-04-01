@@ -17,4 +17,5 @@ sealed interface RegisterAction {
     data class GenderChange(val gender: Gender) : RegisterAction
     data class RoleChange(val role: FamilyRole) : RegisterAction
     data class BirthdayChange(val birthday: String) : RegisterAction
+    data class ScreenChange(val screen: Screen) : RegisterAction
 }

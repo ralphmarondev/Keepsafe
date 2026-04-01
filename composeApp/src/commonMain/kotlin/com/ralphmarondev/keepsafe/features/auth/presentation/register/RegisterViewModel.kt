@@ -32,6 +32,7 @@ class RegisterViewModel(
             is RegisterAction.BirthdayChange -> birthdayChange(action.birthday)
             is RegisterAction.GenderChange -> genderChange(action.gender)
             is RegisterAction.RoleChange -> roleChange(action.role)
+            is RegisterAction.ScreenChange -> screenChange(action.screen)
             RegisterAction.Register -> register()
             RegisterAction.Login -> login()
         }
@@ -79,6 +80,10 @@ class RegisterViewModel(
 
     private fun roleChange(role: FamilyRole) {
         _state.update { it.copy(role = role) }
+    }
+
+    private fun screenChange(screen: Screen) {
+        _state.update { it.copy(currentScreen = screen) }
     }
 
     private fun login() {
