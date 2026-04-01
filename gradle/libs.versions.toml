@@ -21,6 +21,8 @@ ksp = "2.3.4"
 sqlite = "2.6.2"
 room = "2.8.4"
 slf4jSimple = "2.0.17"
+googleGmsGoogleServices = "4.4.4"
+gitlive = "2.4.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
@@ -61,6 +63,11 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jSimple" }
+gitlive-firebase-auth = { group = "dev.gitlive", name = "firebase-auth", version.ref = "gitlive" }
+gitlive-firebase-firestore = { group = "dev.gitlive", name = "firebase-firestore", version.ref = "gitlive" }
+firebase-auth-android = { module = "com.google.firebase:firebase-auth", version = "22.1.1" }
+firebase-firestore-android = { module = "com.google.firebase:firebase-firestore", version = "24.4.5" }
+firebase-common-android = { module = "com.google.firebase:firebase-common", version = "20.4.0" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -72,6 +79,7 @@ androidKmpLibrary = { id = "com.android.kotlin.multiplatform.library", version.r
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
+googleGmsGoogleServices = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 
 [bundles]
 ktor = [

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -43,4 +44,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.ui)
     implementation(libs.compose.material3)
+//    implementation(libs.gitlive.firebase.auth)
+//    implementation(libs.gitlive.firebase.firestore)
 }

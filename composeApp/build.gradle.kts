@@ -45,6 +45,8 @@ kotlin {
             implementation(libs.bundles.room)
             api(libs.bundles.datastore)
             api(libs.koin.core)
+//            implementation(libs.gitlive.firebase.auth)
+//            implementation(libs.gitlive.firebase.firestore)
         }
         val desktopMain by getting
         desktopMain.dependencies {
