@@ -1,8 +1,5 @@
 package com.ralphmarondev.keepsafe.core.domain.model
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
-
 enum class Gender {
     Male, Female
 }
@@ -47,7 +44,7 @@ data class Member(
     val childOrder: Int? = null,
     val birthday: String? = null,
     val isAdmin: Boolean = false,
-    val createdAt: Instant = Clock.System.now(),
-    val updatedAt: Instant = Clock.System.now(),
+    val createdAt: Long = System.currentTimeMillis(), //Clock.System.now(),
+    val updatedAt: Long = System.currentTimeMillis(), //Clock.System.now(),
     val isDeleted: Boolean = false
 )

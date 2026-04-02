@@ -6,8 +6,6 @@ import androidx.room.TypeConverters
 import com.ralphmarondev.keepsafe.core.data.local.database.Converters
 import com.ralphmarondev.keepsafe.core.domain.model.FamilyRole
 import com.ralphmarondev.keepsafe.core.domain.model.Gender
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 
 @Entity(tableName = "members")
 @TypeConverters(Converters::class)
@@ -27,7 +25,7 @@ data class MemberEntity(
     val childOrder: Int? = null,
     val birthday: String? = null,
     val isAdmin: Boolean = false,
-    val createdAt: Instant = Clock.System.now(),
-    val updatedAt: Instant = Clock.System.now(),
+    val createdAt: Long = System.currentTimeMillis(), // Clock.System.now(),
+    val updatedAt: Long = System.currentTimeMillis(),// Clock.System.now(),
     val isDeleted: Boolean = false
 )
