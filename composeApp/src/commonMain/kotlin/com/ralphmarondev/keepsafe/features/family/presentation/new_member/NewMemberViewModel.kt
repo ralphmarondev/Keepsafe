@@ -126,7 +126,23 @@ class NewMemberViewModel(
                     }
 
                     is Result.Success -> {
-                        _state.update { it.copy(isRegistered = true) }
+                        _state.update {
+                            it.copy(
+                                isRegistered = true,
+                                message = "Member registered successfully.",
+                                showMessage = true,
+                                currentScreen = Screen.PersonalInformation,
+                                email = "",
+                                password = "",
+                                firstName = "",
+                                lastName = "",
+                                middleName = "",
+                                maidenName = "",
+                                gender = Gender.Male,
+                                role = FamilyRole.Guardian,
+                                birthday = "",
+                            )
+                        }
                     }
                 }
             } catch (e: Exception) {
