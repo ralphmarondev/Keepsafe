@@ -136,7 +136,6 @@ private fun NewMemberScreen(
                                     lastNameChange = { action(NewMemberAction.LastNameChange(it)) },
                                     middleNameChange = { action(NewMemberAction.MiddleNameChange(it)) },
                                     maidenNameChange = { action(NewMemberAction.MaidenNameChange(it)) },
-                                    prev = { },
                                     next = { action(NewMemberAction.ScreenChange(Screen.OptionalInformation)) }
                                 )
                             }
@@ -196,18 +195,17 @@ private fun PersonalInformation(
     lastNameChange: (String) -> Unit,
     middleNameChange: (String) -> Unit,
     maidenNameChange: (String) -> Unit,
-    next: () -> Unit,
-    prev: () -> Unit
+    next: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
 
     Text(
-        text = "Tell Us About You",
+        text = "Basic Information",
         style = MaterialTheme.typography.titleLarge,
         color = MaterialTheme.colorScheme.primary
     )
     Text(
-        text = "Enter your basic information. You'll be the first member and administrator of this family.",
+        text = "Enter the member's basic information.",
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.secondary
     )
@@ -228,7 +226,7 @@ private fun PersonalInformation(
         ),
         leadingIconImageVector = Icons.Outlined.AccountTree,
         labelText = "First Name",
-        placeHolderText = "Your First Name"
+        placeHolderText = "Member's First Name"
     )
 
     NormalTextField(
@@ -246,7 +244,7 @@ private fun PersonalInformation(
         ),
         leadingIconImageVector = Icons.Outlined.AccountTree,
         labelText = "Last Name",
-        placeHolderText = "Your Last Name"
+        placeHolderText = "Member's Last Name"
     )
 
     NormalTextField(
@@ -264,7 +262,7 @@ private fun PersonalInformation(
         ),
         leadingIconImageVector = Icons.Outlined.AccountTree,
         labelText = "Middle Name",
-        placeHolderText = "Your Middle Name"
+        placeHolderText = "Member's Middle Name"
     )
 
     NormalTextField(
@@ -281,7 +279,7 @@ private fun PersonalInformation(
             }
         ),
         leadingIconImageVector = Icons.Outlined.AccountTree,
-        labelText = "Maiden Name",
+        labelText = "Member's Maiden Name",
         placeHolderText = "(Optional)"
     )
 
@@ -291,14 +289,6 @@ private fun PersonalInformation(
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         defaultText = "Next"
-    )
-
-    SecondaryButton(
-        onClick = { prev() },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        defaultText = "Previous"
     )
 }
 
@@ -316,12 +306,12 @@ private fun OptionalInformation(
     val focusManager = LocalFocusManager.current
 
     Text(
-        text = "Tell Us More About Yourself",
+        text = "Additional Details",
         style = MaterialTheme.typography.titleLarge,
         color = MaterialTheme.colorScheme.primary
     )
     Text(
-        text = "Please provide your birthday, role, and gender. This helps us personalize your experience and manage your family account correctly.",
+        text = "Add optional information to complete the member's profile.",
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.secondary
     )
@@ -393,12 +383,12 @@ private fun AccountInformation(
     val focusManager = LocalFocusManager.current
 
     Text(
-        text = "Secure Your Account",
+        text = "Account Setup",
         style = MaterialTheme.typography.titleLarge,
         color = MaterialTheme.colorScheme.primary
     )
     Text(
-        text = "Create your login credentials so you can access and manage your family anytime.",
+        text = "Set login credentials for this member.",
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.secondary
     )
@@ -419,7 +409,7 @@ private fun AccountInformation(
         ),
         leadingIconImageVector = Icons.Outlined.AccountTree,
         labelText = "Email",
-        placeHolderText = "you@example.com"
+        placeHolderText = "newmember@example.com"
     )
 
     NormalTextField(
@@ -437,7 +427,7 @@ private fun AccountInformation(
         ),
         leadingIconImageVector = Icons.Outlined.AccountTree,
         labelText = "Password",
-        placeHolderText = "Your Password"
+        placeHolderText = "Member's Password"
     )
 
     PrimaryButton(
@@ -470,12 +460,12 @@ private fun Summary(
     prev: () -> Unit
 ) {
     Text(
-        text = "Review Your Information",
+        text = "Review Member Details",
         style = MaterialTheme.typography.titleLarge,
         color = MaterialTheme.colorScheme.primary
     )
     Text(
-        text = "Take a moment to check your details before completing your registration.",
+        text = "Confirm the information before adding this member.",
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.secondary
     )
@@ -514,7 +504,7 @@ private fun Summary(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        defaultText = "Register"
+        defaultText = "Add Member"
     )
 
     SecondaryButton(
