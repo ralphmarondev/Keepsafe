@@ -2,6 +2,7 @@ package com.ralphmarondev.keepsafe.di
 
 import com.ralphmarondev.keepsafe.core.di.coreModule
 import com.ralphmarondev.keepsafe.features.auth.di.authModule
+import com.ralphmarondev.keepsafe.features.family.di.familyModule
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -11,4 +12,5 @@ val appModule = module {
     includes(coreModule)
     includes(platformModule)
     includes(authModule)
+    includes(familyModule)
 }

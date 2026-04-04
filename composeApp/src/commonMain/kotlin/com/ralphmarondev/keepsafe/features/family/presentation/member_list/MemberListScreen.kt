@@ -13,31 +13,43 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.ralphmarondev.keepsafe.core.domain.model.Member
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun FamilyListScreenRoot() {
-    val state = MemberListState()
+    val viewModel: MemberListViewModel = koinViewModel()
+    val state by viewModel.state.collectAsState()
 
-    FamilyListScreen(state = state)
+    FamilyListScreen(
+        state = state,
+        action = viewModel::onAction
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun FamilyListScreen(
-    state: MemberListState
+    state: MemberListState,
+    action: (MemberListAction) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -50,6 +62,14 @@ private fun FamilyListScreen(
                     titleContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { action(MemberListAction.AddNewMember) }) {
+                Icon(
+                    imageVector = Icons.Outlined.Add,
+                    contentDescription = "Add new family member"
+                )
+            }
         }
     ) { innerPadding ->
         LazyVerticalGrid(
