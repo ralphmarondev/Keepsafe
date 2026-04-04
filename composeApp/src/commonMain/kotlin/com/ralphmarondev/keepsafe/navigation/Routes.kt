@@ -13,4 +13,7 @@ sealed interface Routes {
 
     @Serializable
     data object MemberList : Routes
+
+    @Serializable
+    data object NewMember : Routes
 }

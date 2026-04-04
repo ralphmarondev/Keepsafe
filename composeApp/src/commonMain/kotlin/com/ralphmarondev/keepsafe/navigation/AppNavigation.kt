@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.ralphmarondev.keepsafe.features.auth.presentation.login.LoginScreenRoot
 import com.ralphmarondev.keepsafe.features.auth.presentation.register.RegisterScreenRoot
 import com.ralphmarondev.keepsafe.features.family.presentation.member_list.FamilyListScreenRoot
+import com.ralphmarondev.keepsafe.features.family.presentation.new_member.NewMemberScreenRoot
 
 @Composable
 fun AppNavigation(
@@ -51,7 +52,18 @@ fun AppNavigation(
             )
         }
         composable<Routes.MemberList> {
-            FamilyListScreenRoot()
+            FamilyListScreenRoot(
+                navigateToNewMember = {
+                    navController.navigate(Routes.NewMember) {
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
+        composable<Routes.NewMember> {
+            NewMemberScreenRoot(
+                navigateBack = { navController.navigateUp() }
+            )
         }
     }
 }

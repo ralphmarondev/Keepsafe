@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -35,9 +36,18 @@ import com.ralphmarondev.keepsafe.core.domain.model.Member
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun FamilyListScreenRoot() {
+fun FamilyListScreenRoot(
+    navigateToNewMember: () -> Unit
+) {
     val viewModel: MemberListViewModel = koinViewModel()
     val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(state.navigateToNewMember) {
+        if (state.navigateToNewMember) {
+            navigateToNewMember()
+            viewModel.onAction(MemberListAction.ClearNavigation)
+        }
+    }
 
     FamilyListScreen(
         state = state,
