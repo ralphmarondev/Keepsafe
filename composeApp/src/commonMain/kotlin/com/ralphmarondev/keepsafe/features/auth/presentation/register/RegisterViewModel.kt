@@ -110,7 +110,7 @@ class RegisterViewModel(
                     familyName = current.familyName.trim()
                 )
                 val member = Member(
-                    familyId = current.familyId.trim(),
+                    firebaseFamilyId = current.familyId.trim(),
                     email = current.email,
                     password = current.password,
                     firstName = current.firstName,

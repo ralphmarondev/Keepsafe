@@ -7,7 +7,7 @@ fun Member.toEntity(): MemberEntity {
     return MemberEntity(
         id = id,
         localFamilyId = localFamilyId,
-        familyId = familyId,
+        firebaseFamilyId = firebaseFamilyId,
         email = email,
         password = password,
         firstName = firstName,
@@ -29,7 +29,7 @@ fun MemberEntity.toDomain(): Member {
     return Member(
         id = id,
         localFamilyId = localFamilyId,
-        familyId = familyId,
+        firebaseFamilyId = firebaseFamilyId,
         email = email,
         password = password,
         firstName = firstName,

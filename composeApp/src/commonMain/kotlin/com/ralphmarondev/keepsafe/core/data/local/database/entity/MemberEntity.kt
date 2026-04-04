@@ -13,7 +13,7 @@ data class MemberEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val localFamilyId: Long = 0,
-    val familyId: String = "",
+    val firebaseFamilyId: String = "",
     val email: String = "",
     val password: String = "",
     val firstName: String? = null,

@@ -22,7 +22,7 @@ class AuthRepositoryImpl(
         val member = Member(
             email = email,
             password = password,
-            familyId = familyId
+            firebaseFamilyId = familyId
         )
         /*
          * Login on firebase with email and password.
@@ -48,7 +48,8 @@ class AuthRepositoryImpl(
 
         // NOTE: save to preference so no login needed on next app launch
         preferences.setCurrentUser(member.email)
-        preferences.setCurrentFamily(member.familyId)
+        preferences.setLocalFamilyId(member.localFamilyId)
+        preferences.setFirebaseFamilyId(member.firebaseFamilyId)
         preferences.setAuthenticated(true)
 
         return Result.Success(member)

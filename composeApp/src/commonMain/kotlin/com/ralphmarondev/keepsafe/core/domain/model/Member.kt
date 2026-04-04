@@ -32,7 +32,7 @@ fun allowedPermissions(member: Member): List<Permission> {
 data class Member(
     val id: Long = 0,
     val localFamilyId: Long = 0, // from local database
-    val familyId: String = "", // from firebase
+    val firebaseFamilyId: String = "", // from firebase
     val email: String = "",
     val password: String = "",
     val firstName: String? = null,
