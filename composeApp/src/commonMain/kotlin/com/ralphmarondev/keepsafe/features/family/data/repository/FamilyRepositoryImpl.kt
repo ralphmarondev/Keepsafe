@@ -22,8 +22,10 @@ class FamilyRepositoryImpl(
 
     override suspend fun addNewMember(member: Member): Result<Member> {
         val firebaseFamilyId = preferences.currentFirebaseFamilyId.first()
+        val localFamilyId = preferences.currentLocalFamilyId.first()
         val newMember = member.copy(
-            firebaseFamilyId = firebaseFamilyId
+            firebaseFamilyId = firebaseFamilyId,
+            localFamilyId = localFamilyId
         )
         memberDao.insert(newMember.toEntity())
 
