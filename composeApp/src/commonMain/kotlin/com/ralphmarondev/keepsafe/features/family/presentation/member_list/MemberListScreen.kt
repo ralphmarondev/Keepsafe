@@ -1,4 +1,4 @@
-package com.ralphmarondev.keepsafe.features.family.presentation.family_list
+package com.ralphmarondev.keepsafe.features.family.presentation.member_list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,7 +29,7 @@ import com.ralphmarondev.keepsafe.core.domain.model.Member
 
 @Composable
 fun FamilyListScreenRoot() {
-    val state = FamilyListState()
+    val state = MemberListState()
 
     FamilyListScreen(state = state)
 }
@@ -37,13 +37,13 @@ fun FamilyListScreenRoot() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun FamilyListScreen(
-    state: FamilyListState
+    state: MemberListState
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Family")
+                    Text(text = "Family Members")
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,

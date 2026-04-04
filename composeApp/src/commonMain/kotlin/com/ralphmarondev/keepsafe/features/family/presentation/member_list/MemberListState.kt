@@ -1,8 +1,8 @@
-package com.ralphmarondev.keepsafe.features.family.presentation.family_list
+package com.ralphmarondev.keepsafe.features.family.presentation.member_list
 
 import com.ralphmarondev.keepsafe.core.domain.model.Member
 
-data class FamilyListState(
+data class MemberListState(
     val navigateBack: Boolean = false,
     val members: List<Member> = emptyList(),
     val isError: Boolean = false,
