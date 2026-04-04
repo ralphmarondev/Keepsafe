@@ -5,10 +5,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -17,7 +19,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Add
-import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -74,7 +75,7 @@ private fun FamilyListScreen(
                     Text(text = "Family Members")
                 },
                 actions = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = { action(MemberListAction.Refresh) }) {
                         Icon(
                             imageVector = Icons.Outlined.RestartAlt,
                             contentDescription = "Refresh"
@@ -127,7 +128,8 @@ private fun FamilyListScreen(
                 .fillMaxSize()
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = PaddingValues(8.dp)
         ) {
             items(items = state.members) { member ->
                 MemberCard(member)
@@ -140,14 +142,15 @@ private fun FamilyListScreen(
 private fun MemberCard(member: Member) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp),
+            .padding(4.dp)
+            .widthIn(min = 180.dp, max = 300.dp),
         shape = RoundedCornerShape(20.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(16.dp)
         ) {
             Box(
