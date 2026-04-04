@@ -47,11 +47,11 @@ class AuthRepositoryImpl(
         memberDao.insert(newMember.toEntity())
 
         // NOTE: save to preference so no login needed on next app launch
-        preferences.setCurrentUser(member.email)
-        preferences.setLocalFamilyId(member.localFamilyId)
-        preferences.setFirebaseFamilyId(member.firebaseFamilyId)
+        preferences.setCurrentUser(newMember.email)
+        preferences.setLocalFamilyId(newMember.localFamilyId)
+        preferences.setFirebaseFamilyId(newMember.firebaseFamilyId)
         preferences.setAuthenticated(true)
 
-        return Result.Success(member)
+        return Result.Success(newMember)
     }
 }
