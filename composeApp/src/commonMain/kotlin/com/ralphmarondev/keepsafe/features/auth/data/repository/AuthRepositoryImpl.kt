@@ -2,6 +2,7 @@ package com.ralphmarondev.keepsafe.features.auth.data.repository
 
 import com.ralphmarondev.keepsafe.core.data.local.database.dao.FamilyDao
 import com.ralphmarondev.keepsafe.core.data.local.database.dao.MemberDao
+import com.ralphmarondev.keepsafe.core.data.local.database.mapper.toDomain
 import com.ralphmarondev.keepsafe.core.data.local.database.mapper.toEntity
 import com.ralphmarondev.keepsafe.core.data.local.preferences.AppPreferences
 import com.ralphmarondev.keepsafe.core.domain.model.Family
@@ -19,11 +20,16 @@ class AuthRepositoryImpl(
         password: String,
         familyId: String
     ): Result<Member> {
-        val member = Member(
+        val memberEntity = memberDao.login(
             email = email,
             password = password,
-            firebaseFamilyId = familyId
+            familyId = familyId
         )
+        if (memberEntity == null) {
+            return Result.Error("Invalid credentials.")
+        }
+
+        val member = memberEntity.toDomain()
         /*
          * Login on firebase with email and password.
          * Check on firestore if the user (email) belong the family (familyId).
@@ -32,6 +38,10 @@ class AuthRepositoryImpl(
          * Else:
          *      - Display invalid credentials.
          */
+        // NOTE: save to preference so no login needed on next app launch
+        preferences.setCurrentUser(member.email)
+        preferences.setFirebaseFamilyId(member.firebaseFamilyId)
+        preferences.setAuthenticated(true)
 
         return Result.Success(member)
     }
