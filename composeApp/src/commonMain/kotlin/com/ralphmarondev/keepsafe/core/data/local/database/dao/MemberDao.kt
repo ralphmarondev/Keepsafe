@@ -10,6 +10,9 @@ interface MemberDao {
     @Insert
     suspend fun insert(member: MemberEntity): Long
 
+    @Query("SELECT * FROM members WHERE email = :email AND password = :password AND firebaseFamilyId = :familyId AND isDeleted = 0")
+    suspend fun login(email: String, password: String, familyId: String): MemberEntity?
+
     @Query("SELECT * FROM members WHERE localFamilyId = :familyId AND isDeleted = 0")
     suspend fun getMembersByLocalFamilyId(familyId: Long): List<MemberEntity>
 
